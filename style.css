@@ -1,29 +1,314 @@
+html {
+  background-color: #BFD4E2;
+}
+
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav {
+  width: 100%;
+  height: 20%;
+  background-color: #3782C9;
+  padding: 5px;
+  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+  font-size: 1.5em; /* Default size for desktop */
+}
+
+ul {
+  ist-style-type: none;
+  display: inline-block;
+  flex-wrap:no-wrap;
   text-align: center;
 }
 
-header {
-  background-color: #111;
+a,
+a:visited {
+  display: block;
+  text-decoration: none;
+  margin-right: 35px;
+}
+
+a {
+  display: inline;
+  text-decoration-line: none;
+  white-space: nowrap;
+}
+
+p.break {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+li {
+  line-height: 25px;
+}
+
+h1 {
+  display: block;
+  font-size: 3em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: 0;
+  margin-right: 0;
+  color: black;
+  font-family: 'Courier New', monospace;
+}
+
+h2 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: 0;
+  margin-right: 0;
+  color: #039BE5;
+  font-family: 'Courier New', monospace;
+}
+
+h3 {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: 0;
+  margin-right: 0;
+  font-family: 'Courier New', monospace;
+}
+
+h4 {
+  font-size:  20px;
+  font-weight: bold;
+}
+
+/* class setting */
+
+.box_body{
+  margin-top: 3%;
+  margin-bottom: 2%;
+  padding: 3%;
+  width:auto;
+  background-color: #F9FBFC;
+}
+
+.header {
+  list-style: none;
   color: white;
-  padding: 20px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.header li{
+	display: inline;
+        justify-content: center
+}
+
+plainlist li{
+	display:block;
+}
+
+.menu_hover {
+  color: black;
+}
+  
+.footer {
+  margin: 0%;
+  padding: 3%;
+  background-color: #404040;
+  color: white;
+}
+
+.url {
+  color: #039BE5;
+  margin: 0%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.box_button {
+  width: fit-content;
+  padding: 5px;
+  margin-bottom: 1px;
+  border: 2px solid #039BE5;
+  border-radius: 10px;
+  color: #039BE5;
+}
+
+.column {
+  padding: 1%;
+  margin-top: 5%;
+  float: left;
+}
+
+.row:after {
+  margin: 0%;
+  content: "";
+  display: table;
+  clear: both;
+}
+
+div.block_text0 {
+  margin-left: 1%;
+  margin-top: 3%;
+  float: left;
+  width: 70%;
+}
+
+div.block_text {
+  margin-left: 1%;
+  margin-top: 0%;
+  float: left;
+  width: 70%;
+}
+
+div.block_text2 {
+  margin: 1%;
+  float: left;
+  width: 60%;
+}
+
+.pictures{
+  text-align: center;
+  padding: 10px;
+  margin: auto;
+}
+
+.container {
+ display: grid;
+ align-items: center; 
+ grid-template-columns: 1fr 1fr 1fr;
+ column-gap: 30px;
 }
 
 img {
-  max-width: 90%;
-  height: auto;
-  margin-top: 20px;
+  max-width: 80%;
+  max-height:80%;
 }
 
-section {
-  padding: 30px 20px;
+.text {
+  font-size: 15px;
 }
 
-#mapid {
-  height: 400px;
-  width: 90%;
-  margin: auto;
-  border: 1px solid #aaa;
+
+
+/*Contact form*/
+form{
+max-width: 680px;
+width: calc(100% - 10px);
+margin: 0 auto;
+font-size: 20px;
 }
+
+.item{
+display: flex;
+align-items: center;
+padding-top: 20px;
+}
+
+.sex{
+padding-top: 20px;
+}
+
+.label{
+width: 180px;
+padding-left: 10px;
+border-left: solid 5px #039BE5;
+}
+
+.label-required{
+color: #039BE5;
+font-weight: bold; 
+font-size: 18px;
+}
+
+input[type="text"],input[type="email"]{
+border: solid 1px #aaa;
+border-radius: 5px;
+padding: 10px;
+font-size: 15px;
+}
+
+select{
+appearance: none;
+cursor: pointer;
+border: solid 1px #aaa;
+border-radius: 5px;
+padding: 10px;
+font-size: 15px;
+}
+
+textarea{
+border: solid 1px #aaa;
+border-radius: 5px;
+padding: 10px;
+height: 160px;
+width: 480px;
+font-size: 15px;
+}
+
+.btn{
+text-align: center;
+margin: 25px auto;
+}
+
+button{
+background:#039BE5;
+border-radius: 7px;
+cursor: pointer;
+color: white;
+font-size: 17px;
+font-weight: bold;
+padding: 10px 25px;
+}
+/*
+div.between {
+  float: left;
+  width: 1%;
+}
+
+
+div.blockb {
+  margin: 1%;
+  float: left;
+  width: 70%;
+}
+
+div.blocka2 {
+  float: left;
+  width: 30%;
+}
+
+div.blockb2 {
+  float: left;
+  width: 70%;
+}
+
+div.blocka3 {
+  float: left;
+  width: 70%;
+}
+
+div.blockb3 {
+  float: left;
+  width: 30%;
+}
+
+
+img.side_image {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+p.side_text {
+  display: inline-block;
+  width: 300px;
+}
+
+
+
