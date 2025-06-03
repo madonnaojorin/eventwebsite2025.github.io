@@ -66,6 +66,7 @@ h2 {
   margin-right: 0;
   color: #039BE5;
   font-family: 'Courier New', monospace;
+  text-align: center;
 }
 
 h3 {
@@ -76,11 +77,13 @@ h3 {
   margin-left: 0;
   margin-right: 0;
   font-family: 'Courier New', monospace;
+  text-align: center;
 }
 
 h4 {
   font-size:  20px;
   font-weight: bold;
+  text-align: center;
 }
 
 /* class setting */
@@ -174,10 +177,11 @@ div.block_text2 {
   width: 60%;
 }
 
-.pictures{
-  text-align: center;
-  padding: 10px;
-  margin: auto;
+.pictures img {
+  display: block;
+  margin: 0 auto;
+  width: 60%; /* adjust size as needed */
+  max-width: 400px; /* optional max width */
 }
 
 .container {
