@@ -1,49 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nao's Birthday Festival 2025</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <header>
-    <h1>The Nao Yamamoto</h1>
-    <p>The Birthday Festival 2025</p>
-  </header>
-
-  <section id="flyer">
-    <img src="flyer.png" alt="Birthday Flyer" />
-    <div class="info">
-      <p>📅 7/5 (Fri) 9:00 PM EDT<br />
-      📅 7/6 (Sat) 10:00 AM JST<br />
-      💻 Zoom Meeting ID: 984 1167 5175<br />
-      🔐 Password: My birthday (6 digits)</p>
-    </div>
-  </section>
-
-  <section id="countdown">
-    <h2>Countdown to Party</h2>
-    <div id="timer"></div>
-  </section>
-
-  <section id="rsvp">
-    <h2>RSVP</h2>
-    <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-  </section>
-
-  <section id="map">
-    <h2>Where Are You Joining From?</h2>
-    <div id="mapid"></div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Nao Yamamoto</p>
-  </footer>
-
-  <!-- Leaflet.js for the map -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:image" content="flyer.png"/>
+  <link rel="icon" type="image/png" href="icon1.png">
+  <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="script.js" defer></script>
+  <title>Nao's Birthday Festival 2025</title>
+</head>
+
+<body>
+    
+
+  <div class="box_body">
+    <h1>The Nao Yamamoto</h1>
+    <h2>The Birthday Festival 2025</h2>
+
+    <p class="break">
+      📅 7/5 (Fri) 9:00 PM EDT<br>
+      📅 7/6 (Sat) 10:00 AM JST<br>
+      💻 Zoom Meeting ID: 984 1167 5175<br>
+      🔐 Password: My birthday (6 digits)
+    </p>
+
+    <div class="pictures">
+      <img src="flyer.png" alt="Birthday Flyer">
+    </div>
+
+    <section>
+      <h2>Countdown to Party</h2>
+      <div id="timer" class="box_button"></div>
+    </section>
+
+    <section>
+      <h2>RSVP</h2>
+      <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </section>
+
+    <section>
+      <h2>Where Are You Joining From?</h2>
+      <div id="mapid" style="height: 400px;"></div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p><strong>Nao Yamamoto</strong></p>
+    <p>Email: nao.m.yamamoto(at)gmail.com</p>
+    <p style="text-align: center;">Last updated: 2025-06-01</p>
+    <p style="text-align: center;">©︎ Nao Yamamoto</p>
+  </footer>
 </body>
 </html>
