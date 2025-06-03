@@ -108,6 +108,12 @@ h4 {
         justify-content: center
 }
 
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 plainlist li{
 	display:block;
 }
