@@ -102,3 +102,11 @@ L.marker([47.6062, -122.3321], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Seattle, USA");
+
+L.marker([56.9496, 24.1052], {
+  icon: L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/190/190601.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  })
+}).addTo(map).bindPopup("Flying to Latvia");
