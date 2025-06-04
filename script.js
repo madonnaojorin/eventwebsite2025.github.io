@@ -121,7 +121,7 @@ L.marker([33.3528, -111.7890], {
 
 L.marker([35.1815, 136.9066], {
   icon: L.icon({
-    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/ltblue-dot.png',
     iconSize: [32, 32],
     iconAnchor: [16, 32]
   })
