@@ -78,3 +78,11 @@ L.marker([24.8607, 67.0011], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Karachi, Pakistan");
+
+L.marker([40.7128, -74.0060], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("New York, USA");
