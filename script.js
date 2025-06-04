@@ -61,3 +61,12 @@ L.marker([37.5665, 126.9780], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Seoul, South Korea");
+
+
+L.marker([38.2404, 140.3633], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Yamagata, Japan");
