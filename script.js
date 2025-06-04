@@ -65,8 +65,16 @@ L.marker([37.5665, 126.9780], {
 
 L.marker([38.2404, 140.3633], {
   icon: L.icon({
-    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
     iconSize: [32, 32],
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Yamagata, Japan");
+
+L.marker([24.8607, 67.0011], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Karachi, Pakistan");
