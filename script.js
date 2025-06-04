@@ -86,3 +86,11 @@ L.marker([40.7128, -74.0060], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("New York, USA");
+
+L.marker([35.5308, 139.7036], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Kawasaki, Japan");
