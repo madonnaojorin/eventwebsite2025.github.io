@@ -36,7 +36,7 @@ L.marker([35.6895, 139.6917],{
     iconSize: [32, 32],
     iconAnchor: [16, 32]
   })
-}).addTo(map).bindPopup("Tokyo, Japan").openPopup(); 
+}).addTo(map).bindPopup("Tokyo, Japan");
 
 L.marker([33.2635, 130.3009], {
   icon: L.icon({
