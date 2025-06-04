@@ -103,10 +103,18 @@ L.marker([47.6062, -122.3321], {
   })
 }).addTo(map).bindPopup("Seattle, USA");
 
-L.marker([56.9496, 24.1052], {
+L.marker([49.1666, -123.1336], {
   icon: L.icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/190/190601.png',
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
     iconSize: [32, 32],
-    iconAnchor: [16, 16]
+    iconAnchor: [16, 32]
   })
-}).addTo(map).bindPopup("Flying to Latvia");
+}).addTo(map).bindPopup("Richmond, BC, Canada");
+
+L.marker([33.3528, -111.7890], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Gilbert, Arizona, USA");
