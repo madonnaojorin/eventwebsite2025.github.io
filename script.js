@@ -30,6 +30,14 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // Example: Add one marker manually
+L.marker([35.6895, 139.6917],{
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Tokyo, Japan").openPopup(); 
+
 L.marker([33.2635, 130.3009], {
   icon: L.icon({
     iconUrl: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
