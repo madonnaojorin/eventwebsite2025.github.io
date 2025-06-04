@@ -1,5 +1,6 @@
 html {
   background-color: #BFD4E2;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -205,6 +206,23 @@ img {
 .text {
   font-size: 15px;
 }
+
+.topnav {
+  position: sticky;
+  top: 0;
+  background-color: #3782C9;
+  padding: 10px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.topnav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 
 #timer {
   font-size: 2.5em;
