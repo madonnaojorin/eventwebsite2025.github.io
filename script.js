@@ -45,3 +45,19 @@ L.marker([33.2635, 130.3009], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Saga, Japan");
+
+L.marker([40.6031, 140.4638], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Hirosaki, Japan");
+
+L.marker([37.5665, 126.9780], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Seoul, South Korea");
