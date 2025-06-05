@@ -126,3 +126,11 @@ L.marker([35.1815, 136.9066], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Nagoya, Japan");
+
+L.marker([56.9496, 24.1052], {
+  icon: L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1350/1350120.png',
+    iconSize: [40, 40],        // Adjust size as needed
+    iconAnchor: [20, 40]       // Position so the tip aligns with the coordinates
+  })
+}).addTo(map).bindPopup("✈️ Airplane over Latvia");
