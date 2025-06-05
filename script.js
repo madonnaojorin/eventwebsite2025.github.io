@@ -134,3 +134,11 @@ L.marker([56.9496, 24.1052], {
     iconAnchor: [20, 40]       // Position so the tip aligns with the coordinates
   })
 }).addTo(map).bindPopup("✈️ Airplane over Latvia");
+
+L.marker([37.7749, -122.4194], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("San Francisco, USA");
