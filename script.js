@@ -142,3 +142,11 @@ L.marker([37.7749, -122.4194], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("San Francisco, USA");
+
+L.marker([34.7846, 135.4140], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Hyogo, Japan");
