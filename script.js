@@ -150,3 +150,11 @@ L.marker([34.7846, 135.4140], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Hyogo, Japan");
+
+L.marker([43.0618, 141.3545], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Sapporo, Japan");
