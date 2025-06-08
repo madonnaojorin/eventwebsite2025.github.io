@@ -166,3 +166,11 @@ L.marker([33.4484, -112.0740], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Phoenix, USA");
+
+L.marker([35.6074, 140.1065], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/ltblue-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Chiba, Japan");
