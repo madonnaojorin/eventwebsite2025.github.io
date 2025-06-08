@@ -169,8 +169,8 @@ L.marker([33.4484, -112.0740], {
 
 L.marker([35.6074, 140.1065], {
   icon: L.icon({
-    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/ltblue-dot.png',
-    iconSize: [32, 32],
-    iconAnchor: [16, 32]
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2342/2342441.png',
+    iconSize: [40, 40],       // Resize as needed
+    iconAnchor: [20, 40]      // Align icon base with map point
   })
-}).addTo(map).bindPopup("Chiba, Japan");
+}).addTo(map).bindPopup("Chiba, Japan 💕");
