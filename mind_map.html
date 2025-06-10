@@ -30,7 +30,7 @@
       border-radius: 50%;
       text-align: center;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      z-index: 1;
+      z-index: 2;
     }
 
     .bubble {
@@ -42,90 +42,74 @@
       text-align: center;
       cursor: pointer;
       user-select: none;
+      animation: float 10s infinite ease-in-out;
       z-index: 1;
     }
 
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
     }
 
-    .description {
+    .tooltip {
       position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: #fff8dc;
+      background-color: #fff;
+      border: 1px solid #ccc;
       padding: 10px;
-      font-size: 16px;
-      text-align: center;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      max-width: 250px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+      display: none;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
   <div class="mindmap-container">
-    <svg id="lines"></svg>
-    <div class="center-node" id="center">Public Health</div>
-    <div class="description" id="description">Click on a topic to learn more.</div>
+    <div class="center-node">Public Health</div>
+    <div id="tooltip" class="tooltip"></div>
   </div>
 
-<script>
-  const topics = {
-    "HIV Modeling": "Mathematical modeling of HIV transmission and care cascade.",
-    "NCDs": "Integration of non-communicable diseases like diabetes and hypertension.",
-    "Policy": "Evidence generation to support public health policy decisions.",
-    "Mental Health": "Modeling comorbid mental health conditions like depression.",
-    "Systems Thinking": "Holistic analysis of complex healthcare systems.",
-    "Data Analysis": "Data cleaning, visualization, and model fitting.",
-    "Team Management": "Leading and collaborating in interdisciplinary teams.",
-    "Health Equity": "Analyzing disparities and designing equitable interventions.",
-    "Simulation": "Agent-based and microsimulation models for disease dynamics.",
-    "Coding": "Python, JavaScript, and simulation frameworks (e.g., MIGHTI)."
-  };
+  <script>
+    const topics = [
+      { label: "HIV Projects", info: "Led multi-country HIV studies influencing public health decisions across sub-Saharan Africa and Central Asia." },
+      { label: "Reproductive Health", info: "Directed programs improving access to reproductive services using tech and telehealth." },
+      { label: "Global Project Management", info: "Oversaw 8+ complex research portfolios as Program Manager at NYU Langone." },
+      { label: "Technical Writing", info: "Translates evidence into peer-reviewed publications and actionable policy briefs." },
+      { label: "Regional Expertise", info: "Deep experience in Eastern Europe, Central Asia, Nepal, and the US." },
+      { label: "Equity & Access", info: "Focused on health equity, HIV prevention, and reproductive rights for vulnerable populations." },
+      { label: "Cross-sector Collaboration", info: "Worked with governments, funders, clinicians, and researchers." },
+      { label: "Evidence-Based Policy", info: "Supports Ministries of Health with timely data for decision-making." }
+    ];
 
-  const container = document.querySelector(".mindmap-container");
+    const container = document.querySelector(".mindmap-container");
+    const tooltip = document.getElementById("tooltip");
 
-  const popup = document.createElement("div");
-  popup.style.position = "absolute";
-  popup.style.background = "#fff";
-  popup.style.border = "1px solid #ccc";
-  popup.style.padding = "10px";
-  popup.style.borderRadius = "8px";
-  popup.style.boxShadow = "0 0 8px rgba(0,0,0,0.2)";
-  popup.style.display = "none";
-  popup.style.maxWidth = "200px";
-  popup.style.zIndex = 10;
-  container.appendChild(popup);
+    topics.forEach((topic, i) => {
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.innerText = topic.label;
+      bubble.style.top = `${20 + Math.random() * 60}%`;
+      bubble.style.left = `${20 + Math.random() * 60}%`;
+      bubble.style.animationDuration = `${6 + Math.random() * 4}s`;
 
-  document.addEventListener("click", (e) => {
-    if (!popup.contains(e.target)) {
-      popup.style.display = "none";
-    }
-  });
+      bubble.addEventListener("click", (e) => {
+        tooltip.innerText = topic.info;
+        tooltip.style.display = "block";
+        tooltip.style.top = `${e.target.offsetTop + 40}px`;
+        tooltip.style.left = `${e.target.offsetLeft + 40}px`;
+      });
 
-  Object.entries(topics).forEach(([topic, description]) => {
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    bubble.innerText = topic;
-    bubble.style.top = `${Math.random() * 80 + 10}%`;
-    bubble.style.left = `${Math.random() * 80 + 10}%`;
-    bubble.style.animationDuration = `${6 + Math.random() * 4}s`;
+      container.appendChild(bubble);
+    });
 
-    bubble.onclick = (e) => {
-      popup.innerText = description;
-      const rect = bubble.getBoundingClientRect();
-      popup.style.top = `${rect.top + window.scrollY + 10}px`;
-      popup.style.left = `${rect.left + window.scrollX + rect.width + 10}px`;
-      popup.style.display = "block";
-    };
-
-    container.appendChild(bubble);
-  });
-</script>
+    // Hide tooltip when clicking outside
+    container.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("bubble")) {
+        tooltip.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
