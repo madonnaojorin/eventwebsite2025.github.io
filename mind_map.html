@@ -3,113 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connected Mind Map</title>
+  <title>Dual-Ring Mind Map</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      background-color: #f9f8f6;
       font-family: sans-serif;
+      background: #f4f4f9;
       overflow: hidden;
     }
-    .mindmap-container {
+
+    .mindmap {
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
     }
-    .center-node {
+
+    .node {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #4CAF50;
-      color: white;
-      padding: 20px;
-      border-radius: 50%;
-      text-align: center;
-      z-index: 2;
-    }
-    .bubble {
-      position: absolute;
-      padding: 12px 18px;
-      border-radius: 50%;
-      background-color: #87cefa;
-      color: #000;
-      text-align: center;
+      padding: 10px 15px;
+      border-radius: 20px;
+      background-color: #90caf9;
+      color: black;
       cursor: pointer;
-      z-index: 2;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      white-space: nowrap;
     }
-    svg.connector {
+
+    .center-node {
+      background-color: #388e3c;
+      color: white;
+      font-weight: bold;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: none;
+      max-width: 200px;
+      z-index: 1000;
+    }
+
+    svg {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
       pointer-events: none;
-    }
-    .tooltip {
-      position: absolute;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
-      z-index: 3;
-      width: 200px;
     }
   </style>
 </head>
 <body>
-  <div class="mindmap-container">
-    <svg class="connector"></svg>
-    <div class="center-node" id="center">Public Health</div>
-    <div class="tooltip" id="tooltip"></div>
+<div class="mindmap" id="mindmap">
+  <div class="node center-node" id="center" style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
+    Public Health
   </div>
-  <script>
-    const topics = [
-      { name: "HIV Modeling", info: "Led multi-country HIV decision modeling efforts." },
-      { name: "NCDs", info: "Experience managing chronic disease programs." },
-      { name: "Policy", info: "Skilled in translating research into actionable policies." },
-      { name: "Mental Health", info: "Worked on mental health integration into health systems." },
-      { name: "Systems Thinking", info: "Adaptable, sees connections across diverse projects." },
-      { name: "Data Analysis", info: "Coordinates research teams and analytic workflows." },
-      { name: "Team Management", info: "Managed diverse international and domestic teams." },
-      { name: "Health Equity", info: "Focused on improving access in underserved areas." },
-      { name: "Simulation", info: "Oversaw development of simulation-based tools." },
-      { name: "Reproductive Health", info: "Led projects in Eastern Europe and Central Asia." }
-    ];
+  <div class="tooltip" id="tooltip"></div>
+  <svg id="lines" width="100%" height="100%"></svg>
+</div>
 
-    const container = document.querySelector(".mindmap-container");
-    const center = document.getElementById("center");
-    const tooltip = document.getElementById("tooltip");
-    const svg = document.querySelector("svg.connector");
+<script>
+  const coreSkills = [
+    { text: "Strategic Planning", info: "Designs and oversees long-term goals for multi-year research programs." },
+    { text: "Budget Oversight", info: "Manages multimillion-dollar budgets with financial compliance." },
+    { text: "Cross-functional Teams", info: "Leads interdisciplinary teams across research, policy, and implementation." },
+    { text: "Stakeholder Engagement", info: "Coordinates with global partners, funders, and public health agencies." },
+    { text: "Research-to-Policy", info: "Drives uptake of scientific evidence through publications and policy briefs." },
+    { text: "Monitoring & Evaluation", info: "Implements frameworks to assess project effectiveness and impact." },
+    { text: "Capacity Building", info: "Mentors junior staff and strengthens team capabilities across countries." }
+  ];
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const radius = 250;
+  const domains = [
+    { name: "HIV Modeling", info: "Led multi-country HIV decision modeling efforts." },
+    { name: "NCDs", info: "Experience managing chronic disease programs." },
+    { name: "Policy", info: "Skilled in translating research into actionable policies." },
+    { name: "Mental Health", info: "Worked on mental health integration into health systems." },
+    { name: "Systems Thinking", info: "Adaptable, sees connections across diverse projects." },
+    { name: "Data Analysis", info: "Coordinates research teams and analytic workflows." },
+    { name: "Team Management", info: "Managed diverse international and domestic teams." },
+    { name: "Health Equity", info: "Focused on improving access in underserved areas." },
+    { name: "Simulation", info: "Oversaw development of simulation-based tools." },
+    { name: "Reproductive Health", info: "Led projects in Eastern Europe and Central Asia." }
+  ];
 
-    topics.forEach((topic, i) => {
-      const angle = (i / topics.length) * 2 * Math.PI;
+  const center = document.getElementById("center");
+  const map = document.getElementById("mindmap");
+  const tooltip = document.getElementById("tooltip");
+  const svg = document.getElementById("lines");
+
+  function placeNodes(items, radius, offset = 0) {
+    const centerX = center.offsetLeft + center.offsetWidth / 2;
+    const centerY = center.offsetTop + center.offsetHeight / 2;
+
+    items.forEach((item, i) => {
+      const angle = ((2 * Math.PI) / items.length) * i + offset;
       const x = centerX + radius * Math.cos(angle);
       const y = centerY + radius * Math.sin(angle);
 
-      const bubble = document.createElement("div");
-      bubble.className = "bubble";
-      bubble.innerText = topic.name;
-      bubble.style.left = `${x - 50}px`;
-      bubble.style.top = `${y - 25}px`;
+      const node = document.createElement("div");
+      node.className = "node";
+      node.innerText = item.text || item.name;
+      node.style.left = `${x}px`;
+      node.style.top = `${y}px`;
+      node.style.transform = "translate(-50%, -50%)";
 
-      bubble.addEventListener("click", (e) => {
-        tooltip.innerText = topic.info;
+      // Tooltip interaction
+      node.addEventListener("click", (e) => {
+        tooltip.innerText = item.info;
         tooltip.style.display = "block";
-        tooltip.style.left = `${x + 10}px`;
-        tooltip.style.top = `${y + 10}px`;
+        tooltip.style.top = `${e.target.offsetTop + 30}px`;
+        tooltip.style.left = `${e.target.offsetLeft + 30}px`;
         e.stopPropagation();
       });
 
-      container.appendChild(bubble);
+      map.appendChild(node);
 
+      // Draw line
       const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
       line.setAttribute("x1", centerX);
       line.setAttribute("y1", centerY);
@@ -119,10 +131,12 @@
       line.setAttribute("stroke-width", "2");
       svg.appendChild(line);
     });
+  }
 
-    document.body.addEventListener("click", () => {
-      tooltip.style.display = "none";
-    });
-  </script>
+  placeNodes(coreSkills, 180);
+  placeNodes(domains, 280, Math.PI / 10);
+
+  window.addEventListener("click", () => tooltip.style.display = "none");
+</script>
 </body>
 </html>
