@@ -74,55 +74,58 @@
     <div class="description" id="description">Click on a topic to learn more.</div>
   </div>
 
-  <script>
-    const topics = {
-      "HIV Modeling": "Simulating HIV transmission and treatment dynamics for policy planning.",
-      "NCDs": "Addressing non-communicable diseases like diabetes and hypertension.",
-      "Policy": "Using data to inform health policy decisions.",
-      "Mental Health": "Integrating mental health into health systems modeling.",
-      "Systems Thinking": "Understanding health as an interconnected system.",
-      "Data Analysis": "Making sense of complex datasets for research and decisions.",
-      "Team Management": "Leading interdisciplinary teams across multiple projects.",
-      "Health Equity": "Focusing on reducing disparities in health outcomes.",
-      "Simulation": "Using agent-based models to explore health interventions.",
-      "Coding": "Building tools and models using Python, R, and more."
+<script>
+  const topics = {
+    "HIV Modeling": "Mathematical modeling of HIV transmission and care cascade.",
+    "NCDs": "Integration of non-communicable diseases like diabetes and hypertension.",
+    "Policy": "Evidence generation to support public health policy decisions.",
+    "Mental Health": "Modeling comorbid mental health conditions like depression.",
+    "Systems Thinking": "Holistic analysis of complex healthcare systems.",
+    "Data Analysis": "Data cleaning, visualization, and model fitting.",
+    "Team Management": "Leading and collaborating in interdisciplinary teams.",
+    "Health Equity": "Analyzing disparities and designing equitable interventions.",
+    "Simulation": "Agent-based and microsimulation models for disease dynamics.",
+    "Coding": "Python, JavaScript, and simulation frameworks (e.g., MIGHTI)."
+  };
+
+  const container = document.querySelector(".mindmap-container");
+
+  const popup = document.createElement("div");
+  popup.style.position = "absolute";
+  popup.style.background = "#fff";
+  popup.style.border = "1px solid #ccc";
+  popup.style.padding = "10px";
+  popup.style.borderRadius = "8px";
+  popup.style.boxShadow = "0 0 8px rgba(0,0,0,0.2)";
+  popup.style.display = "none";
+  popup.style.maxWidth = "200px";
+  popup.style.zIndex = 10;
+  container.appendChild(popup);
+
+  document.addEventListener("click", (e) => {
+    if (!popup.contains(e.target)) {
+      popup.style.display = "none";
+    }
+  });
+
+  Object.entries(topics).forEach(([topic, description]) => {
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.innerText = topic;
+    bubble.style.top = `${Math.random() * 80 + 10}%`;
+    bubble.style.left = `${Math.random() * 80 + 10}%`;
+    bubble.style.animationDuration = `${6 + Math.random() * 4}s`;
+
+    bubble.onclick = (e) => {
+      popup.innerText = description;
+      const rect = bubble.getBoundingClientRect();
+      popup.style.top = `${rect.top + window.scrollY + 10}px`;
+      popup.style.left = `${rect.left + window.scrollX + rect.width + 10}px`;
+      popup.style.display = "block";
     };
 
-    const container = document.querySelector(".mindmap-container");
-    const center = document.getElementById("center");
-    const desc = document.getElementById("description");
-    const svg = document.getElementById("lines");
-    const centerRect = center.getBoundingClientRect();
-
-    Object.keys(topics).forEach((topic, i) => {
-      const bubble = document.createElement("div");
-      bubble.className = "bubble";
-      bubble.innerText = topic;
-
-      const angle = (i / Object.keys(topics).length) * 2 * Math.PI;
-      const radius = 200;
-      const cx = window.innerWidth / 2 + radius * Math.cos(angle);
-      const cy = window.innerHeight / 2 + radius * Math.sin(angle);
-
-      bubble.style.left = `${cx - 40}px`;
-      bubble.style.top = `${cy - 20}px`;
-
-      container.appendChild(bubble);
-
-      // Draw line from center to bubble
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", window.innerWidth / 2);
-      line.setAttribute("y1", window.innerHeight / 2);
-      line.setAttribute("x2", cx);
-      line.setAttribute("y2", cy);
-      line.setAttribute("stroke", "#aaa");
-      line.setAttribute("stroke-width", "2");
-      svg.appendChild(line);
-
-      bubble.onclick = () => {
-        desc.textContent = topics[topic];
-      };
-    });
-  </script>
+    container.appendChild(bubble);
+  });
+</script>
 </body>
 </html>
