@@ -42,14 +42,14 @@
       text-align: center;
       cursor: pointer;
       user-select: none;
-      animation: float 10s infinite ease-in-out;
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
       z-index: 1;
     }
 
     @keyframes float {
-      0% { transform: translateY(0); }
+      0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
     }
 
     .tooltip {
@@ -62,11 +62,12 @@
       border-radius: 5px;
       display: none;
       font-size: 14px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
-  <div class="mindmap-container">
+  <div class="mindmap-container" id="container">
     <div class="center-node">Public Health</div>
     <div id="tooltip" class="tooltip"></div>
   </div>
@@ -83,32 +84,35 @@
       { label: "Evidence-Based Policy", info: "Supports Ministries of Health with timely data for decision-making." }
     ];
 
-    const container = document.querySelector(".mindmap-container");
+    const container = document.getElementById("container");
     const tooltip = document.getElementById("tooltip");
 
-    topics.forEach((topic, i) => {
+    topics.forEach(topic => {
       const bubble = document.createElement("div");
       bubble.className = "bubble";
       bubble.innerText = topic.label;
-      bubble.style.top = `${20 + Math.random() * 60}%`;
-      bubble.style.left = `${20 + Math.random() * 60}%`;
-      bubble.style.animationDuration = `${6 + Math.random() * 4}s`;
 
+      // Random position but not too close to edges
+      const top = 10 + Math.random() * 70;
+      const left = 10 + Math.random() * 70;
+      bubble.style.top = `${top}%`;
+      bubble.style.left = `${left}%`;
+
+      // Click behavior
       bubble.addEventListener("click", (e) => {
         tooltip.innerText = topic.info;
         tooltip.style.display = "block";
-        tooltip.style.top = `${e.target.offsetTop + 40}px`;
-        tooltip.style.left = `${e.target.offsetLeft + 40}px`;
+        tooltip.style.top = `${e.target.offsetTop + 30}px`;
+        tooltip.style.left = `${e.target.offsetLeft + 30}px`;
+        e.stopPropagation();
       });
 
       container.appendChild(bubble);
     });
 
-    // Hide tooltip when clicking outside
-    container.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("bubble")) {
-        tooltip.style.display = "none";
-      }
+    // Click anywhere to hide tooltip
+    container.addEventListener("click", () => {
+      tooltip.style.display = "none";
     });
   </script>
 </body>
