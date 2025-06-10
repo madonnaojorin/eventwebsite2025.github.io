@@ -1,142 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dual-Ring Mind Map</title>
   <style>
     body {
       margin: 0;
       font-family: sans-serif;
-      background: #f4f4f9;
-      overflow: hidden;
+      background: #fff;
     }
-
     .mindmap {
       position: relative;
       width: 100vw;
       height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-
+    .center {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      text-align: center;
+    }
     .node {
       position: absolute;
-      padding: 10px 15px;
-      border-radius: 20px;
-      background-color: #90caf9;
-      color: black;
-      cursor: pointer;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #90caf9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      white-space: nowrap;
+      padding: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-
-    .center-node {
-      background-color: #388e3c;
-      color: white;
-      font-weight: bold;
+    .node:hover {
+      background: #42a5f5;
     }
-
     .tooltip {
       position: absolute;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
+      padding: 8px 12px;
+      background: #333;
+      color: white;
       border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-size: 0.85em;
       display: none;
       max-width: 200px;
-      z-index: 1000;
-    }
-
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      pointer-events: none;
     }
   </style>
 </head>
 <body>
-<div class="mindmap" id="mindmap">
-  <div class="node center-node" id="center" style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
-    Public Health
+  <div class="mindmap" id="mindmap">
+    <div class="center">Public Health Leadership</div>
+    <div class="tooltip" id="tooltip"></div>
   </div>
-  <div class="tooltip" id="tooltip"></div>
-  <svg id="lines" width="100%" height="100%"></svg>
-</div>
 
-<script>
-  const coreSkills = [
-    { text: "Strategic Planning", info: "Designs and oversees long-term goals for multi-year research programs." },
-    { text: "Budget Oversight", info: "Manages multimillion-dollar budgets with financial compliance." },
-    { text: "Cross-functional Teams", info: "Leads interdisciplinary teams across research, policy, and implementation." },
-    { text: "Stakeholder Engagement", info: "Coordinates with global partners, funders, and public health agencies." },
-    { text: "Research-to-Policy", info: "Drives uptake of scientific evidence through publications and policy briefs." },
-    { text: "Monitoring & Evaluation", info: "Implements frameworks to assess project effectiveness and impact." },
-    { text: "Capacity Building", info: "Mentors junior staff and strengthens team capabilities across countries." }
-  ];
+  <script>
+    const core = [
+      { text: "Strategic Planning", info: "Designs and oversees long-term goals for multi-year research programs." },
+      { text: "Budget Oversight", info: "Manages multimillion-dollar budgets with financial compliance." },
+      { text: "Cross-functional Teams", info: "Leads interdisciplinary teams across research, policy, and implementation." },
+      { text: "Stakeholder Engagement", info: "Coordinates with global partners, funders, and public health agencies." },
+      { text: "Research-to-Policy", info: "Drives uptake of scientific evidence through publications and policy briefs." },
+      { text: "Monitoring & Evaluation", info: "Implements frameworks to assess project effectiveness and impact." },
+      { text: "Capacity Building", info: "Mentors junior staff and strengthens team capabilities across countries." }
+    ];
 
-  const domains = [
-    { name: "HIV Modeling", info: "Led multi-country HIV decision modeling efforts." },
-    { name: "NCDs", info: "Experience managing chronic disease programs." },
-    { name: "Policy", info: "Skilled in translating research into actionable policies." },
-    { name: "Mental Health", info: "Worked on mental health integration into health systems." },
-    { name: "Systems Thinking", info: "Adaptable, sees connections across diverse projects." },
-    { name: "Data Analysis", info: "Coordinates research teams and analytic workflows." },
-    { name: "Team Management", info: "Managed diverse international and domestic teams." },
-    { name: "Health Equity", info: "Focused on improving access in underserved areas." },
-    { name: "Simulation", info: "Oversaw development of simulation-based tools." },
-    { name: "Reproductive Health", info: "Led projects in Eastern Europe and Central Asia." }
-  ];
+    const projects = [
+      { text: "HIV Modeling", info: "Led multi-country HIV decision modeling efforts." },
+      { text: "NCDs", info: "Experience managing chronic disease programs." },
+      { text: "Policy", info: "Skilled in translating research into actionable policies." },
+      { text: "Mental Health", info: "Worked on mental health integration into health systems." },
+      { text: "Systems Thinking", info: "Adaptable, sees connections across diverse projects." },
+      { text: "Data Analysis", info: "Coordinates research teams and analytic workflows." },
+      { text: "Team Management", info: "Managed diverse international and domestic teams." },
+      { text: "Health Equity", info: "Focused on improving access in underserved areas." },
+      { text: "Simulation", info: "Oversaw development of simulation-based tools." },
+      { text: "Reproductive Health", info: "Led projects in Eastern Europe and Central Asia." }
+    ];
 
-  const center = document.getElementById("center");
-  const map = document.getElementById("mindmap");
-  const tooltip = document.getElementById("tooltip");
-  const svg = document.getElementById("lines");
+    const map = document.getElementById("mindmap");
+    const tooltip = document.getElementById("tooltip");
+    const centerX = map.offsetWidth / 2;
+    const centerY = map.offsetHeight / 2;
 
-  function placeNodes(items, radius, offset = 0) {
-    const centerX = center.offsetLeft + center.offsetWidth / 2;
-    const centerY = center.offsetTop + center.offsetHeight / 2;
-
-    items.forEach((item, i) => {
-      const angle = ((2 * Math.PI) / items.length) * i + offset;
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-
-      const node = document.createElement("div");
-      node.className = "node";
-      node.innerText = item.text || item.name;
-      node.style.left = `${x}px`;
-      node.style.top = `${y}px`;
-      node.style.transform = "translate(-50%, -50%)";
-
-      // Tooltip interaction
-      node.addEventListener("click", (e) => {
-        tooltip.innerText = item.info;
-        tooltip.style.display = "block";
-        tooltip.style.top = `${e.target.offsetTop + 30}px`;
-        tooltip.style.left = `${e.target.offsetLeft + 30}px`;
-        e.stopPropagation();
+    function placeNodes(data, radius, offsetAngle = 0) {
+      data.forEach((node, i) => {
+        const angle = ((2 * Math.PI) / data.length) * i + offsetAngle;
+        const x = centerX + radius * Math.cos(angle) - 60;
+        const y = centerY + radius * Math.sin(angle) - 60;
+        const div = document.createElement("div");
+        div.className = "node";
+        div.style.left = `${x}px`;
+        div.style.top = `${y}px`;
+        div.innerText = node.text;
+        div.addEventListener("click", (e) => {
+          tooltip.innerText = node.info;
+          tooltip.style.display = "block";
+          tooltip.style.left = `${x + 70}px`;
+          tooltip.style.top = `${y}px`;
+          e.stopPropagation();
+        });
+        map.appendChild(div);
       });
+    }
 
-      map.appendChild(node);
+    placeNodes(core, 200);
+    placeNodes(projects, 350, Math.PI / projects.length);
 
-      // Draw line
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", centerX);
-      line.setAttribute("y1", centerY);
-      line.setAttribute("x2", x);
-      line.setAttribute("y2", y);
-      line.setAttribute("stroke", "#ccc");
-      line.setAttribute("stroke-width", "2");
-      svg.appendChild(line);
+    document.body.addEventListener("click", () => {
+      tooltip.style.display = "none";
     });
-  }
-
-  placeNodes(coreSkills, 180);
-  placeNodes(domains, 280, Math.PI / 10);
-
-  window.addEventListener("click", () => tooltip.style.display = "none");
-</script>
+  </script>
 </body>
 </html>
