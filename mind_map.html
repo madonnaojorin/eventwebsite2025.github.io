@@ -1,119 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Public Health Leadership Mind Map</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual-Ring Mind Map</title>
   <style>
     body {
       margin: 0;
-      background: #fff;
-      font-family: sans-serif;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
     }
-    .container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
+
+    .mindmap-container {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
+      height: 100vh;
     }
-    .node {
+
+    .mindmap {
+      position: relative;
+      width: 45%;
+      height: 90vh;
+    }
+
+    .center-node {
       position: absolute;
-      padding: 12px 18px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ccc;
+      padding: 20px;
       border-radius: 50%;
-      background-color: #80caff;
-      color: #000;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .bubble {
+      position: absolute;
+      background-color: #87cefa;
+      padding: 10px 15px;
+      border-radius: 30px;
       text-align: center;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.3s;
     }
-    .node:hover {
-      background-color: #3ea3ff;
-    }
-    .center {
-      background-color: #ccc;
-      font-weight: bold;
-    }
+
     .tooltip {
       position: absolute;
-      background-color: #333;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 5px;
+      background: #333;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
       display: none;
-      max-width: 200px;
-      font-size: 14px;
+      max-width: 180px;
+      font-size: 12px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="mindmap">
-    <div class="tooltip" id="tooltip"></div>
+  <div class="mindmap-container">
+    <div class="mindmap" id="management-map">
+      <div class="center-node">Leadership</div>
+    </div>
+    <div class="mindmap" id="academic-map">
+      <div class="center-node">Public Health</div>
+    </div>
   </div>
 
-  <script>
-    const center = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const radius = 240;
-    const container = document.getElementById("mindmap");
-    const tooltip = document.getElementById("tooltip");
+  <div id="tooltip" class="tooltip"></div>
 
-    const topics = [
-      { text: "HIV Modeling", info: "Led multi-country HIV decision modeling efforts." },
-      { text: "NCDs", info: "Experience managing chronic disease programs." },
-      { text: "Policy", info: "Skilled in translating research into actionable policies." },
-      { text: "Mental Health", info: "Worked on mental health integration into health systems." },
-      { text: "Systems Thinking", info: "Adaptable, sees connections across diverse projects." },
-      { text: "Data Analysis", info: "Coordinates research teams and analytic workflows." },
-      { text: "Team Management", info: "Managed diverse international and domestic teams." },
-      { text: "Health Equity", info: "Focused on improving access in underserved areas." },
-      { text: "Simulation", info: "Oversaw development of simulation-based tools." },
-      { text: "Reproductive Health", info: "Led projects in Eastern Europe and Central Asia." },
-      { text: "Strategic Planning", info: "Designs and oversees long-term goals for research programs." },
-      { text: "Budget Oversight", info: "Manages multimillion-dollar budgets with compliance." },
-      { text: "Cross-functional Teams", info: "Leads interdisciplinary research-policy teams." },
-      { text: "Stakeholder Engagement", info: "Coordinates with global partners and agencies." },
-      { text: "Research-to-Policy", info: "Drives policy uptake via research dissemination." },
-      { text: "Monitoring & Evaluation", info: "Implements frameworks to assess impact." },
-      { text: "Capacity Building", info: "Mentors and trains public health teams globally." }
+  <script>
+    const managementTopics = [
+      { text: "Strategic Planning", info: "Designs and oversees long-term goals for multi-year research programs." },
+      { text: "Budget Oversight", info: "Manages multimillion-dollar budgets with financial compliance." },
+      { text: "Cross-functional Teams", info: "Leads interdisciplinary teams across research, policy, and implementation." },
+      { text: "Stakeholder Engagement", info: "Coordinates with global partners, funders, and public health agencies." },
+      { text: "Research-to-Policy", info: "Drives uptake of scientific evidence through publications and policy briefs." },
+      { text: "Monitoring & Evaluation", info: "Implements frameworks to assess project effectiveness and impact." },
+      { text: "Capacity Building", info: "Mentors junior staff and strengthens team capabilities across countries." }
     ];
 
-    // Create center node
-    const centerNode = document.createElement("div");
-    centerNode.className = "node center";
-    centerNode.style.left = `${center.x - 60}px`;
-    centerNode.style.top = `${center.y - 60}px`;
-    centerNode.style.width = "120px";
-    centerNode.style.height = "120px";
-    centerNode.style.lineHeight = "120px";
-    centerNode.innerText = "Public Health\nLeadership";
-    container.appendChild(centerNode);
+    const academicTopics = [
+      { name: "HIV Modeling", info: "Led multi-country HIV decision modeling efforts." },
+      { name: "NCDs", info: "Experience managing chronic disease programs." },
+      { name: "Policy", info: "Skilled in translating research into actionable policies." },
+      { name: "Mental Health", info: "Worked on mental health integration into health systems." },
+      { name: "Systems Thinking", info: "Adaptable, sees connections across diverse projects." },
+      { name: "Data Analysis", info: "Coordinates research teams and analytic workflows." },
+      { name: "Team Management", info: "Managed diverse international and domestic teams." },
+      { name: "Health Equity", info: "Focused on improving access in underserved areas." },
+      { name: "Simulation", info: "Oversaw development of simulation-based tools." },
+      { name: "Reproductive Health", info: "Led projects in Eastern Europe and Central Asia." }
+    ];
 
-    // Create peripheral nodes
-    topics.forEach((topic, i) => {
-      const angle = (i / topics.length) * 2 * Math.PI;
-      const x = center.x + radius * Math.cos(angle);
-      const y = center.y + radius * Math.sin(angle);
+    const tooltip = document.getElementById("tooltip");
 
-      const bubble = document.createElement("div");
-      bubble.className = "node";
-      bubble.innerText = topic.text;
-      bubble.style.left = `${x - 60}px`;
-      bubble.style.top = `${y - 30}px`;
-      bubble.style.width = "120px";
-      bubble.style.height = "60px";
-      bubble.style.lineHeight = "60px";
+    function createMap(containerId, topics, labelField = 'text') {
+      const container = document.getElementById(containerId);
+      const cx = container.offsetWidth / 2;
+      const cy = container.offsetHeight / 2;
+      const radius = Math.min(cx, cy) - 70;
+      const angleStep = 2 * Math.PI / topics.length;
 
-      bubble.addEventListener("click", (e) => {
-        tooltip.innerText = topic.info;
-        tooltip.style.display = "block";
-        tooltip.style.top = `${e.target.offsetTop + 70}px`;
-        tooltip.style.left = `${e.target.offsetLeft}px`;
-        e.stopPropagation();
+      topics.forEach((topic, i) => {
+        const angle = i * angleStep;
+        const x = cx + radius * Math.cos(angle);
+        const y = cy + radius * Math.sin(angle);
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.innerText = topic[labelField];
+        bubble.style.left = `${x}px`;
+        bubble.style.top = `${y}px`;
+
+        bubble.addEventListener("click", (e) => {
+          tooltip.innerText = topic.info;
+          tooltip.style.display = "block";
+          tooltip.style.top = `${e.clientY + 10}px`;
+          tooltip.style.left = `${e.clientX + 10}px`;
+          e.stopPropagation();
+        });
+
+        container.appendChild(bubble);
       });
+    }
 
-      container.appendChild(bubble);
-    });
+    createMap("management-map", managementTopics);
+    createMap("academic-map", academicTopics, 'name');
 
     document.body.addEventListener("click", () => {
       tooltip.style.display = "none";
