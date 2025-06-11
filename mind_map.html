@@ -133,13 +133,16 @@
         bubble.style.left = `${x - 50}px`;  // Adjust for width
         bubble.style.top = `${y - 20}px`;   // Adjust for height
 
-        bubble.addEventListener("click", (e) => {
-          tooltip.innerText = topic.info;
-          tooltip.style.display = "block";
-          tooltip.style.top = `${e.clientY + 10}px`;
-          tooltip.style.left = `${e.clientX + 10}px`;
-          e.stopPropagation();
-        });
+      bubble.addEventListener("mouseenter", (e) => {
+        tooltip.innerText = topic.info;
+        tooltip.style.display = "block";
+        tooltip.style.top = `${e.clientY + 10}px`;
+        tooltip.style.left = `${e.clientX + 10}px`;
+      });
+      
+      bubble.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+      });
 
         container.appendChild(bubble);
 
