@@ -143,7 +143,7 @@ function layout() {
   });
 
   sharedTopics.forEach((t, i) => {
-    const x = window.innerWidth / 2 - 160;
+    const x = (centers[0].x + centers[1].x) / 2;
     const y = 150 + i * 130;
     createBubble(t.text, t.info, x, y, "shared-node");
     drawLine(t.text, "Leadership");
@@ -151,7 +151,7 @@ function layout() {
   });
 
   managementTopics.forEach((t, i) => {
-    const angle = (i / managementTopics.length) * 2 * Math.PI;
+    const angle = (-Math.PI / 2) + (i / (managementTopics.length - 1)) * Math.PI;
     const x = centers[0].x + 200 * Math.cos(angle);
     const y = centers[0].y + 200 * Math.sin(angle);
     createBubble(t.text, t.info, x, y);
@@ -159,7 +159,7 @@ function layout() {
   });
 
   academicTopics.forEach((t, i) => {
-    const angle = (i / academicTopics.length) * 2 * Math.PI;
+    const angle = (Math.PI / 2) + (i / (academicTopics.length - 1)) * Math.PI;
     const x = centers[1].x + 200 * Math.cos(angle);
     const y = centers[1].y + 200 * Math.sin(angle);
     createBubble(t.text, t.info, x, y);
