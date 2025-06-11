@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dual-Ring Mind Map</title>
   <style>
     body {
@@ -23,6 +23,9 @@
       position: relative;
       width: 45%;
       height: 90vh;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .center-node {
@@ -35,6 +38,7 @@
       border-radius: 50%;
       text-align: center;
       font-weight: bold;
+      z-index: 1;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
@@ -45,6 +49,7 @@
       border-radius: 30px;
       text-align: center;
       cursor: pointer;
+      z-index: 2;
       transition: transform 0.3s;
     }
 
@@ -55,9 +60,16 @@
       padding: 8px;
       border-radius: 4px;
       display: none;
-      max-width: 180px;
+      max-width: 200px;
       font-size: 12px;
       z-index: 10;
+    }
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
   </style>
 </head>
@@ -103,18 +115,24 @@
       const container = document.getElementById(containerId);
       const cx = container.offsetWidth / 2;
       const cy = container.offsetHeight / 2;
-      const radius = Math.min(cx, cy) - 70;
+      const radius = Math.min(cx, cy) - 80;
       const angleStep = 2 * Math.PI / topics.length;
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", container.offsetWidth);
+      svg.setAttribute("height", container.offsetHeight);
+      container.appendChild(svg);
 
       topics.forEach((topic, i) => {
         const angle = i * angleStep;
         const x = cx + radius * Math.cos(angle);
         const y = cy + radius * Math.sin(angle);
+
         const bubble = document.createElement("div");
         bubble.className = "bubble";
         bubble.innerText = topic[labelField];
-        bubble.style.left = `${x}px`;
-        bubble.style.top = `${y}px`;
+        bubble.style.left = `${x - 50}px`;  // Adjust for width
+        bubble.style.top = `${y - 20}px`;   // Adjust for height
 
         bubble.addEventListener("click", (e) => {
           tooltip.innerText = topic.info;
@@ -126,17 +144,17 @@
 
         container.appendChild(bubble);
 
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", centerX);
-      line.setAttribute("y1", centerY);
-      line.setAttribute("x2", x);
-      line.setAttribute("y2", y);
-      line.setAttribute("stroke", "#ccc");
-      line.setAttribute("stroke-width", "2");
-      svg.appendChild(line);
+        // draw connecting line
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", cx);
+        line.setAttribute("y1", cy);
+        line.setAttribute("x2", x);
+        line.setAttribute("y2", y);
+        line.setAttribute("stroke", "#bbb");
+        line.setAttribute("stroke-width", "2");
+        svg.appendChild(line);
       });
     }
-
 
     createMap("management-map", managementTopics);
     createMap("academic-map", academicTopics, 'name');
