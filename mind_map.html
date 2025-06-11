@@ -143,25 +143,26 @@ function layout() {
   });
 
   sharedTopics.forEach((t, i) => {
-    const x = (centers[0].x + centers[1].x) / 3;
+    const weight = 0.45;  // 0.5 is exactly between Leadership and Public Health
+    const x = centers[0].x * (1 - weight) + centers[1].x * weight;
     const y = 150 + i * 130;
     createBubble(t.text, t.info, x, y, "shared-node");
     drawLine(t.text, "Leadership");
     drawLine(t.text, "Public Health");
   });
 
-// Left side: Management topics (arc on the left side, opening outward)
+// Left side: Management topics (π/3 to 5π/3)
 managementTopics.forEach((t, i) => {
-  const angle = (Math.PI / 2) + (i / (managementTopics.length - 1)) * Math.PI;  // from π/2 to 3π/2
+  const angle = (Math.PI / 3) + (i / (managementTopics.length - 1)) * (4 * Math.PI / 3); // π/3 to 5π/3
   const x = centers[0].x + 200 * Math.cos(angle);
   const y = centers[0].y + 200 * Math.sin(angle);
   createBubble(t.text, t.info, x, y);
   drawLine(t.text, "Leadership");
 });
 
-// Right side: Academic topics (arc on the right side, opening outward)
+// Right side: Academic topics (4π/3 to 8π/3 ≡ wrap-around)
 academicTopics.forEach((t, i) => {
-  const angle = (-Math.PI / 2) + (i / (academicTopics.length - 1)) * Math.PI;  // from -π/2 to π/2
+  const angle = (4 * Math.PI / 3) + (i / (academicTopics.length - 1)) * (4 * Math.PI / 3); // 4π/3 to 8π/3
   const x = centers[1].x + 200 * Math.cos(angle);
   const y = centers[1].y + 200 * Math.sin(angle);
   createBubble(t.text, t.info, x, y);
