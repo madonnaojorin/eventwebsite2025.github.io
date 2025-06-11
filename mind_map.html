@@ -143,7 +143,7 @@ function layout() {
   });
 
   sharedTopics.forEach((t, i) => {
-    const x = (centers[0].x + centers[1].x) / 2;
+    const x = (centers[0].x + centers[1].x) / 3;
     const y = 150 + i * 130;
     createBubble(t.text, t.info, x, y, "shared-node");
     drawLine(t.text, "Leadership");
