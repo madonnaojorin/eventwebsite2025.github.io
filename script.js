@@ -174,3 +174,11 @@ L.marker([35.6074, 140.1065], {
     iconAnchor: [20, 40]      // Align icon base with map point
   })
 }).addTo(map).bindPopup("Chiba, Japan 💕");
+
+L.marker([39.9526, -75.1652], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+  })
+}).addTo(map).bindPopup('Philadelphia, USA');
