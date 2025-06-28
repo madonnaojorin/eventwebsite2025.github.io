@@ -182,3 +182,11 @@ L.marker([39.9526, -75.1652], {
     iconAnchor: [16, 32],
   })
 }).addTo(map).bindPopup('Philadelphia, USA');
+
+L.marker([-37.8136, 144.9631], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Melbourne, Australia");
