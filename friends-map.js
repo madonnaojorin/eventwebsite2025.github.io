@@ -1,13 +1,3 @@
-// Initialize the map
-const map = L.map('mapid').setView([20, 0], 2);
-
-// Add OpenStreetMap tiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-
-
 function initFriendMap() {
   const map = L.map('friendsMap').setView([20, 0], 2);
 
@@ -38,3 +28,5 @@ function initFriendMap() {
   addFriendMarker(40.7, -74.0, 'haruki.jpeg', 'Nao (New York)', 'We met in grad school and bonded over data visualization!');
   addFriendMarker(35.7, 139.7, 'lisa.jpg', 'Lisa (Tokyo)', 'We were roommates in college and reunited in NYC years later.');
 }
+
+window.addEventListener('load', initFriendMap);
