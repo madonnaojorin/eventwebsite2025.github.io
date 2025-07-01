@@ -20,7 +20,7 @@ function addFriendMarker(lat, lon, image, storyUrl, label) {
 }
 
 // Example entries (replace with real data)
-addFriendMarker(35.6895, 139.6917, 'nao.jpg', 'nao.html', 'Nao from Tokyo');
+addFriendMarker(35.6895, 139.6917, 'haruki.jpeg', 'nao.html', 'Nao from Tokyo');
 addFriendMarker(40.7128, -74.0060, 'lisa.jpg', 'lisa.html', 'Lisa from New York');
 addFriendMarker(49.1666, -123.1336, 'friend1.jpg', 'friend1.html', 'Friend 1 from Vancouver');
 addFriendMarker(37.5665, 126.9780, 'friend2.jpg', 'friend2.html', 'Friend 2 from Seoul');
