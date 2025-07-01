@@ -1,3 +1,13 @@
+// Initialize the map
+const map = L.map('mapid').setView([20, 0], 2);
+
+// Add OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+
+
 function initFriendMap() {
   const map = L.map('friendsMap').setView([20, 0], 2);
 
