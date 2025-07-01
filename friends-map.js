@@ -25,7 +25,7 @@ function initFriendMap() {
   }
 
   // Example: replace with your real data
-  addFriendMarker(40.7, -74.0, 'haruki.jpeg', 'Nao (New York)', 'We met in grad school and bonded over data visualization!');
+  addFriendMarker(40.7, -74.0, 'Haruki.jpeg', 'Nao (New York)', 'We met in grad school and bonded over data visualization!');
   addFriendMarker(35.7, 139.7, 'lisa.jpg', 'Lisa (Tokyo)', 'We were roommates in college and reunited in NYC years later.');
 }
 
