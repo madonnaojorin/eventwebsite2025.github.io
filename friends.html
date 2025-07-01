@@ -6,30 +6,25 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="icon" type="image/png" href="icon1.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="friends-map.js" defer></script>
   <title>Friends Around the World</title>
+  <style>
+    #mapid {
+      height: 600px;
+      width: 100%;
+      margin: 30px 0;
+    }
+  </style>
 </head>
 
 <body>
   <div class="box_body">
     <h1>Friends Around the World</h1>
-    <p style="text-align: center;">Click on a photo to read about our story 🧡</p>
+    <p style="text-align: center;">Click a photo on the map to read our story 🌍</p>
 
-    <div class="gallery">
-      <!-- Example friend block -->
-      <div class="friend-card">
-        <a href="stories/friend1.html">
-          <img src="friends/friend1.jpg" alt="Friend 1">
-        </a>
-      </div>
-
-      <div class="friend-card">
-        <a href="stories/friend2.html">
-          <img src="friends/friend2.jpg" alt="Friend 2">
-        </a>
-      </div>
-
-      <!-- Repeat similar blocks for more friends -->
-    </div>
+    <div id="mapid"></div>
   </div>
 
   <footer>
@@ -38,7 +33,7 @@
       <p><strong>Nao Yamamoto</strong></p>
       <p>Email: nao.m.yamamoto(at)gmail.com</p>
       <div style="height: 50px;"></div>
-      <p style="text-align: center;"><strong>Last updated: 2025-06-28</strong></p>
+      <p style="text-align: center;"><strong>Last updated: 2025-07-01</strong></p>
       <p style="text-align: center;">©︎ Nao Yamamoto</p>
     </div>
   </footer>
