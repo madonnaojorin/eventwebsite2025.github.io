@@ -431,3 +431,14 @@ p.side_text {
   height: 100%;
 }
 
+.friend-thumb {
+  position: relative;
+  transition: transform 0.2s;
+}
+.friend-thumb:hover {
+  transform: scale(1.05);
+}
+.friend-thumb img {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
