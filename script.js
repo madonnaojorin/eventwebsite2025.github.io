@@ -30,7 +30,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // Example: Add one marker manually
-L.marker([35.6895, 139.6917],{
+L.marker([35.7107, 139.8016],{
   icon: L.icon({
     iconUrl: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
     iconSize: [32, 32],
