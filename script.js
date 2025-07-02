@@ -190,3 +190,11 @@ L.marker([-37.8136, 144.9631], {
     iconAnchor: [16, 32]
   })
 }).addTo(map).bindPopup("Melbourne, Australia");
+
+L.marker([35.6074,  139.6917], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+   iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Tokyo, Japan");
