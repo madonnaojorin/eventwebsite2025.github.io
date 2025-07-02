@@ -197,4 +197,12 @@ L.marker([35.6074,  139.6917], {
    iconSize: [32, 32],
     iconAnchor: [16, 32]
   })
-}).addTo(map).bindPopup("Tokyo, Japan");
+}).addTo(map).bindPopup("Sumida-ku, Japan");
+
+L.marker([35.6546, 139.7965], {
+  icon: L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+   iconSize: [32, 32],
+    iconAnchor: [16, 32]
+  })
+}).addTo(map).bindPopup("Koto-ku, Japan");
