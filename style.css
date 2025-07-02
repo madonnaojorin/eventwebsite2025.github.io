@@ -160,3 +160,38 @@ button {
   border-radius: 15px;
   background-color: #F0F8FF;
 }
+
+.friend-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.friend-thumb {
+  width: 18%;
+}
+
+.friend-card {
+  position: relative;
+  width: 100%;
+}
+
+.friend-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.friend-name {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
