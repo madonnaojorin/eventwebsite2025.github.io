@@ -1,37 +1,23 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <link rel="icon" type="image/png" href="icon1.png">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="friends-map.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Friends Around the World</title>
-  <style>
-    #mapid {
-      height: 600px;
-      width: 100%;
-      margin: 30px 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <h1>The Birthday Festival 2025</h1>
   <h2>Thank you so much for coming!</h2>
 
-  <!-- Example group -->
   <div class="group-section" style="background-color: #ffcccc">
-    <h3>ASU / PhD (Pink)</h3>
+    <h3>ASU / PhD</h3>
     <div class="friend-gallery">
-      <div class="friend-card" onclick="showModal('lucero.jpg', 'Lucero', 'My office mate at ASU during my PhD. She literally rescued me twice while I was in AZ...')">
+      <div class="friend-card" onclick="showModal('lucero.jpg', 'Lucero', 'She rescued me twice in AZ...')">
         <img src="friends/lucero.jpg" alt="Lucero">
         <div class="friend-name">Lucero</div>
       </div>
-      <div class="friend-card" onclick="showModal('yilei.jpg', 'Yilei', 'We lived in the same apartment complex in AZ...')">
+      <div class="friend-card" onclick="showModal('yilei.jpg', 'Yilei', 'She stayed with me in NYC and hosted me in AZ...')">
         <img src="friends/yilei.jpg" alt="Yilei">
         <div class="friend-name">Yilei</div>
       </div>
@@ -39,258 +25,49 @@
         <img src="friends/mason.jpg" alt="Mason">
         <div class="friend-name">Mason</div>
       </div>
-      <!-- Add more friends here -->
     </div>
   </div>
 
-  <div class="group-section" style="background-color: #ccffcc">
-    <h3>SDF, Nursing School (Green)</h3>
-    <div class="friend-gallery">
-      <div class="friend-card" onclick="showModal('lisa.jpg', 'Lisa', 'We met when I was 20 at SDF nursing school...')">
-        <img src="friends/lisa.jpg" alt="Lisa">
-        <div class="friend-name">Lisa</div>
-      </div>
-      <div class="friend-card" onclick="showModal('aya.jpg', 'Aya', 'Description needed')">
-        <img src="friends/aya.jpg" alt="Aya">
-        <div class="friend-name">Aya</div>
-      </div>
-      <div class="friend-card" onclick="showModal('airi.jpg', 'Airi', 'Description needed')">
-        <img src="friends/airi.jpg" alt="Airi">
-        <div class="friend-name">Airi</div>
-      </div>
-      <div class="friend-card" onclick="showModal('shige.jpg', 'Shige', 'Description needed')">
-        <img src="friends/shige.jpg" alt="Shige">
-        <div class="friend-name">Shige</div>
-      </div>
+  <!-- Map container placeholder -->
+  <div id="friendsMap" style="height: 500px; width: 100%; margin: 40px 0;"></div>
+
+  <!-- Friend Modal -->
+  <div id="friendModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="Friend photo">
+      <h4 id="modalName"></h4>
+      <p id="modalDesc"></p>
     </div>
   </div>
 
-
-<div class="friend-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-  
-  <div class="friend-thumb" title="We met in Tokyo and she helped me through everything!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 1">
-    <div class="friend-name">Mason (ASU/PhD)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="Roommates in NYC, now she lives in Seoul!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 2">
-    <div class="friend-name">Saki chan (Student)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="My first conference buddy.">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Lucero (ASU/PhD)</div>
-  </div>
-    </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Sangyop (Vancouver)</div>   
-  </div>
-      </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Hitomi, Ojisan (Family)</div>
-    </div>
-    </div>
-
-</div>
-
-
-  <div class="friend-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-  
-  <div class="friend-thumb" title="We met in Tokyo and she helped me through everything!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 1">
-    <div class="friend-name">Echigoya san (Hokkaido U/MPH)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="Roommates in NYC, now she lives in Seoul!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 2">
-    <div class="friend-name">Kei chan (Funabashi High School)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="My first conference buddy.">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Haruki, Yuta, Manami chan (Family)</div>
-  </div>
-    </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Omori san (Research community)</div>   
-  </div>
-      </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Kawahara san (Hokkaido U/MPH)</div>
-    </div>
-    </div>
-
-</div>
-  
-  <!-- Map -->
-    <div class="map-container">
-  <div id="friendsMap"></div>
-</div>
-
- 
-<div class="friend-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-  
-  <div class="friend-thumb" title="We met in Tokyo and she helped me through everything!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 1">
-    <div class="friend-name">Mao (Funabashi High School) </div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="Roommates in NYC, now she lives in Seoul!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 2">
-    <div class="friend-name">Salman (ASU/PhD)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="My first conference buddy.">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Aya (SDF, Nursing school)</div>
-  </div>
-    </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Lisa (SDF, Nursing school)</div>   
-  </div>
-      </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Tammy (ASU/PhD)</div>
-    </div>
-    </div>
-
-</div>
-
-<div class="friend-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-  
-  <div class="friend-thumb" title="We met in Tokyo and she helped me through everything!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 1">
-    <div class="friend-name">Airi chan (SDF, Nursing school)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="Roommates in NYC, now she lives in Seoul!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 2">
-    <div class="friend-name">Yilei (ASU/PhD)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="My first conference buddy.">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Yang kun (Hokkaido U/MPH)</div>
-  </div>
-    </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Bianca san (Vancouver)</div>   
-  </div>
-      </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Laura (Research community)</div>
-    </div>
-    </div>
-
-</div>  
-
-<div class="friend-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-  
-  <div class="friend-thumb" title="We met in Tokyo and she helped me through everything!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 1">
-    <div class="friend-name">Shige chan (SDF, Nursing school)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="Roommates in NYC, now she lives in Seoul!">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 2">
-    <div class="friend-name">Kasturi (NYU)</div>
-  </div>
-    </div>
-  
-  <div class="friend-thumb" title="My first conference buddy.">
-        <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">Elina (Vancouver)</div>
-  </div>
-    </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">temp</div>   
-  </div>
-      </div>
-  
-    <div class="friend-thumb" title="My first conference buddy.">
-          <div class="friend-card">
-    <img src="friends/Haruki.jpeg" alt="Friend 3">
-    <div class="friend-name">temp</div>
-    </div>
-    </div>
-
-</div>  
-
-<footer>
+  <footer>
     <div class="footer">
-    <div style="height: 50px;"></div>
-
-    <p>
-        <strong>Nao Yamamoto</strong>
-    </p>
-
-    <p>
-        Email: nao.m.yamamoto(at)gmail.com
-    </p>
-
-    <div style="height: 50px;"></div>
-
-    <p style="text-align: center;">
-        <strong>Last updated: 2025-07-05</strong>
-    </p>
-
-    <p style="text-align: center;">
-        ©︎ Nao Yamamoto
-    </p>
+      <p><strong>Nao Yamamoto</strong></p>
+      <p>Email: nao.m.yamamoto(at)gmail.com</p>
+      <p style="text-align: center;"><strong>Last updated: 2025-07-05</strong></p>
+      <p style="text-align: center;">&copy; Nao Yamamoto</p>
     </div>
+  </footer>
 
-</footer>
-</div>
+  <script>
+    function showModal(imageName, friendName, description) {
+      document.getElementById('modalImg').src = 'friends/' + imageName;
+      document.getElementById('modalName').textContent = friendName;
+      document.getElementById('modalDesc').textContent = description;
+      document.getElementById('friendModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('friendModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('friendModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
 </html>
