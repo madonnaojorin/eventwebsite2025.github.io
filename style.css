@@ -1,7 +1,7 @@
 body {
   font-family: Verdana, sans-serif;
   margin: 0;
-  background-color: #b0c9d9;
+  background-color: #fffaf1;
 }
 
 h1, h2, h3, h4 {
@@ -123,7 +123,6 @@ footer {
 }
 
 .footer {
-  max-width: 800px;
   margin: 0 auto;
 }
 .group-blue { background-color: #cce5ff; }
