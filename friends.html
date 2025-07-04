@@ -1,41 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Friends Around the World</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="friends-map.js" defer></script>
 </head>
 <body>
   <h1>The Birthday Festival 2025</h1>
   <h2>Thank you so much for coming!</h2>
 
-  <div class="group-section" style="background-color: #ffcccc">
-    <h3>ASU / PhD</h3>
-    <div class="friend-gallery">
-      <div class="friend-card" onclick="showModal('lucero.jpg', 'Lucero', 'She rescued me twice in AZ...')">
-        <img src="friends/lucero.jpg" alt="Lucero">
-        <div class="friend-name">Lucero</div>
+  <div class="main-grid">
+    <div class="group-section group-blue">
+      <h3>Family</h3>
+      <div class="friend-gallery">
+        <div class="friend-card" onclick="showModal('haruki.jpg', 'Haruki', 'My cousin!')">
+          <img src="friends/haruki.jpg" alt="Haruki" />
+          <div class="friend-name">Haruki</div>
+        </div>
       </div>
-      <div class="friend-card" onclick="showModal('yilei.jpg', 'Yilei', 'She stayed with me in NYC and hosted me in AZ...')">
-        <img src="friends/yilei.jpg" alt="Yilei">
-        <div class="friend-name">Yilei</div>
+    </div>
+
+    <div class="group-section group-pink">
+      <h3>SDF Nursing School</h3>
+      <div class="friend-gallery">
+        <div class="friend-card" onclick="showModal('lisa.jpg', 'Lisa', 'SDF days...')">
+          <img src="friends/lisa.jpg" alt="Lisa" />
+          <div class="friend-name">Lisa</div>
+        </div>
       </div>
-      <div class="friend-card" onclick="showModal('mason.jpg', 'Mason', 'Description needed')">
-        <img src="friends/mason.jpg" alt="Mason">
-        <div class="friend-name">Mason</div>
+    </div>
+
+    <div class="map-wrapper">
+      <div id="friendsMap"></div>
+    </div>
+
+    <div class="group-section group-yellow">
+      <h3>High School</h3>
+      <div class="friend-gallery">
+        <div class="friend-card" onclick="showModal('mao.jpg', 'Mao', 'High school memories')">
+          <img src="friends/mao.jpg" alt="Mao" />
+          <div class="friend-name">Mao</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-section group-cyan">
+      <h3>Research Community</h3>
+      <div class="friend-gallery">
+        <div class="friend-card" onclick="showModal('laura.jpg', 'Laura', 'Global health friend')">
+          <img src="friends/laura.jpg" alt="Laura" />
+          <div class="friend-name">Laura</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-section group-green">
+      <h3>Vancouver</h3>
+      <div class="friend-gallery">
+        <div class="friend-card" onclick="showModal('bianca.jpg', 'Bianca', 'UBC classmate')">
+          <img src="friends/bianca.jpg" alt="Bianca" />
+          <div class="friend-name">Bianca</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-section group-red">
+      <h3>ASU</h3>
+      <div class="friend-gallery">
+        <div class="friend-card" onclick="showModal('lucero.jpg', 'Lucero', 'My PhD buddy')">
+          <img src="friends/lucero.jpg" alt="Lucero" />
+          <div class="friend-name">Lucero</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Map container placeholder -->
-  <div id="friendsMap" style="height: 500px; width: 100%; margin: 40px 0;"></div>
-
-  <!-- Friend Modal -->
   <div id="friendModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modalImg" src="" alt="Friend photo">
+      <img id="modalImg" src="" alt="Friend" />
       <h4 id="modalName"></h4>
       <p id="modalDesc"></p>
     </div>
@@ -51,20 +98,17 @@
   </footer>
 
   <script>
-    function showModal(imageName, friendName, description) {
-      document.getElementById('modalImg').src = 'friends/' + imageName;
-      document.getElementById('modalName').textContent = friendName;
-      document.getElementById('modalDesc').textContent = description;
+    function showModal(img, name, desc) {
+      document.getElementById('modalImg').src = 'friends/' + img;
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalDesc').textContent = desc;
       document.getElementById('friendModal').style.display = 'flex';
     }
-
     function closeModal() {
       document.getElementById('friendModal').style.display = 'none';
     }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('friendModal');
-      if (event.target === modal) {
+    window.onclick = function (e) {
+      if (e.target === document.getElementById('friendModal')) {
         closeModal();
       }
     };
