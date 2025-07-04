@@ -1,119 +1,80 @@
-/* General layout */
 body {
+  font-family: 'Verdana', sans-serif;
+  background-color: #bcd2df;
   margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: #BFD4E2;
-  overflow-x: hidden;
-}
-
-h1, h2, h3 {
+  padding: 0;
   text-align: center;
-  margin: 10px;
 }
 
-/* Map section */
-#friendsMap {
-  height: 600px;
-  width: 80%;
-  margin: 30px auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* Grouping container */
-.group-section {
-  margin: 40px auto;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-}
-
-.friend-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 10px;
-  justify-items: center;
-  align-items: start;
+header h1 {
+  font-size: 2em;
   margin-top: 20px;
 }
 
-.friend-card {
-  cursor: pointer;
-  text-align: center;
-  transition: transform 0.2s ease;
+header h2 {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #9b009b;
 }
 
-.friend-card:hover {
-  transform: scale(1.05);
-}
-
-.friend-card img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.friend-name {
-  margin-top: 6px;
-  font-size: 0.8em;
-  font-weight: bold;
-  color: #333;
-  max-width: 80px;
-  word-wrap: break-word;
-}
-
-/* Modal styles */
-#friendModal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.5);
-  justify-content: center;
+main {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 40px;
 }
 
-#modalContent {
-  background-color: white;
-  border-radius: 12px;
+.top-section, .bottom-section {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.group {
   padding: 20px;
-  max-width: 400px;
-  width: 80%;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  position: relative;
+  border-radius: 25px;
+  min-width: 300px;
+  max-width: 380px;
 }
 
-#modalContent img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
+.group h3 {
   margin-bottom: 15px;
 }
 
-#modalContent h3 {
-  margin: 10px 0;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-items: center;
 }
 
-#modalContent p {
-  font-size: 0.95em;
-  color: #444;
-  line-height: 1.4;
+.grid img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
 }
 
-#closeModal {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 1.2em;
+.grid img:hover {
+  transform: scale(1.1);
   cursor: pointer;
-  color: #666;
-  font-weight: bold;
+}
+
+#friendsMap {
+  height: 400px;
+  width: 90%;
+  border-radius: 15px;
+  border: 4px solid #333;
+  margin: 30px auto;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #333;
+  color: white;
 }
