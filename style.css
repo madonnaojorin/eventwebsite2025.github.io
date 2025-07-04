@@ -113,13 +113,19 @@ h2 {
   cursor: pointer;
 }
 
-.footer {
-  background-color: #404040;
+footer {
+  width: 90%;
+  background-color: #444;
   color: white;
-  padding: 20px;
+  padding: 20px 0;
   text-align: center;
+  margin-top: 50px;
 }
 
+.footer {
+  max-width: 800px;
+  margin: 0 auto;
+}
 .group-blue { background-color: #cce5ff; }
 .group-pink { background-color: #fddde6; }
 .group-yellow { background-color: #ffff99; }
