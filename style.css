@@ -74,27 +74,29 @@ h2 {
 #friendsMap {
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .modal {
   display: none;
   position: fixed;
-  z-index: 10;
+  z-index: 9999; /* 👈 Make sure it's higher than the map */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  align-items: center;
+  background-color: rgba(0,0,0,0.7); /* Dim background */
   justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   background-color: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
-  text-align: center;
   max-width: 400px;
+  text-align: center;
+  z-index: 10000; /* optional */
 }
 
 .modal-content img {
