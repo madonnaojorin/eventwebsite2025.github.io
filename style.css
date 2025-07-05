@@ -19,6 +19,23 @@ h2 {
   color: #039BE5;
 }
 
+.word-art {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  color: #ff69b4;
+  text-shadow: 2px 2px #fff, 3px 3px #ff69b4;
+  margin-top: 10px;
+}
+
+.instruction-text {
+  text-align: center;
+  font-size: 1.1em;
+  margin-top: 5px;
+  color: #333;
+  font-style: italic;
+}
+
 .main-grid {
   display: grid;
   grid-template-areas:
