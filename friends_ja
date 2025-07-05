@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>世界中の友達</title>
+  <link rel="icon" type="image/png" href="icon1.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="alternate" href="friends.html" hreflang="en" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="friends-map.js" defer></script>
+</head>
+<body>
+  <div class="language-toggle">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('ja')">日本語</button>
+  </div>
+
+  <h1 id="page-title">2025年バースデーフェスティバル</h1>
+  <h2 class="word-art" id="thank-you">来てくれて本当にありがとう！</h2>
+  <p class="instruction-text" id="click-instruction">写真をクリックするとストーリーが読めます ✨</p>
+
+  <!-- content remains the same, but modal content will switch dynamically -->
+
+  <div id="friendModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="Friend" />
+      <h4 id="modalName"></h4>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <p><strong>山本奈央</strong></p>
+      <p>Email: nao.m.yamamoto(at)gmail.com</p>
+      <p style="text-align: center;"><strong>最終更新日: 2025年7月5日</strong></p>
+      <p style="text-align: center;">&copy; 山本奈央</p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        title: "The Birthday Festival 2025",
+        thankYou: "Thank you so much for coming!",
+        clickInstruction: "Click the picture to read the story ✨"
+      },
+      ja: {
+        title: "2025年バースデーフェスティバル",
+        thankYou: "来てくれて本当にありがとう！",
+        clickInstruction: "写真をクリックするとストーリーが読めます ✨"
+      }
+    };
+
+    function switchLanguage(lang) {
+      document.getElementById('page-title').textContent = translations[lang].title;
+      document.getElementById('thank-you').textContent = translations[lang].thankYou;
+      document.getElementById('click-instruction').textContent = translations[lang].clickInstruction;
+    }
+
+    function showModal(img, name, desc) {
+      document.getElementById('modalImg').src = 'friends/' + img;
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('friendModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('friendModal').style.display = 'none';
+    }
+    window.onclick = function (e) {
+      if (e.target === document.getElementById('friendModal')) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
